@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = transform.forward * speed * MaxSpeed;
-        rb.AddTorque(Vector3.up * rotationSpeed * MaxRotationSpeed * -1, ForceMode.Impulse);
+        rb.AddTorque(Vector3.up * rotationSpeed * MaxRotationSpeed * -1, ForceMode.Acceleration);
+        rb.maxAngularVelocity = Mathf.Deg2Rad * 90;
     }
 }
