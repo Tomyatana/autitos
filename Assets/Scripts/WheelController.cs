@@ -15,6 +15,7 @@ public class WheelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -23,31 +24,31 @@ public class WheelController : MonoBehaviour
     {
         Vector3 rel_velocity = rb.GetRelativePointVelocity(transform.position);
         float forward = Vector3.Dot(rb.velocity, transform.TransformDirection(Vector3.forward));
-        float horizontal = Vector3.Dot(rel_velocity, -transform.right);
+        float horizontal = Vector3.Dot(rel_velocity, transform.TransformDirection(Vector3.right));
 
         float offset = SuspensionOffset();
+        Vector3 suspension = Vector3.zero;
         Vector3 movement = Vector3.zero;
         // Suspension
-        if(offset != 0) {
-            Debug.DrawLine(transform.position, transform.position + Vector3.up * (50/((offset * suspensionStrength) - (rel_velocity.y * suspensionDamping))), Color.green);
-            movement.y = (offset * suspensionStrength) - (rel_velocity.y * suspensionDamping);
+        if (offset == 0) {
+            return;
         }
+        Debug.DrawLine(transform.position, transform.position + Vector3.up * (50 / ((offset * suspensionStrength) - (rb.velocity.y * suspensionDamping))), Color.green);
+        suspension.y = (offset * suspensionStrength) - (rb.velocity.y * suspensionDamping);
 
         // Sliding / Driftin' yay
         Vector3 slide = Vector3.zero;
-        float sliding_force = -(horizontal*slidingFactor);
-        print($"{horizontal}, {rel_velocity.x}, {rb.velocity.x}");
-        Debug.DrawLine(transform.position, transform.position + transform.TransformDirection(transform.right) * sliding_force, Color.red);
-        if(!isSteer) {
-            print(sliding_force);
-            print(horizontal);
+        float sliding_force = -(horizontal * slidingFactor);
+        Debug.DrawLine(transform.position, transform.position - transform.TransformDirection(transform.right) * (5/(1+sliding_force)), Color.red);
+        slide.x = -sliding_force;
+
+        if (isSteer) {
+            movement.z = 50;
         }
-        movement.x = -sliding_force * 0.9f;
 
-        movement.z = transform.forward.z;
-
-        rb.AddForce(movement);
-        rb.AddForce(transform.forward);
+        rb.AddRelativeForce(suspension);
+        rb.AddRelativeForce(movement);
+        rb.AddRelativeForce(slide, ForceMode.Acceleration);
     }
 
     float SuspensionOffset() {
