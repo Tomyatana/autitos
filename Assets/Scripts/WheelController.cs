@@ -12,18 +12,25 @@ public class WheelController : MonoBehaviour
     public bool isSteer = false;
 
     Rigidbody rb;
+    Vector3 prev_vel = Vector3.zero;
+    [SerializeField] float maxRotationVel = 90;
+    PID slidePid = new PID();
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
         rb = GetComponent<Rigidbody>();
+        rb.maxAngularVelocity = Mathf.Deg2Rad * maxRotationVel;
+        slidePid.derivative = 1;
+        slidePid.integral = 1;
+        slidePid.proportional = 1;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 rel_velocity = rb.GetRelativePointVelocity(transform.position);
-        float forward = Vector3.Dot(rb.velocity, transform.TransformDirection(Vector3.forward));
+        Vector3 rel_velocity = Quaternion.Inverse(transform.rotation) * rb.velocity;
+        float forward = Vector3.Dot(rel_velocity, transform.TransformDirection(Vector3.forward));
         float horizontal = Vector3.Dot(rel_velocity, transform.TransformDirection(Vector3.right));
 
         float offset = SuspensionOffset();
@@ -39,8 +46,8 @@ public class WheelController : MonoBehaviour
         // Sliding / Driftin' yay
         Vector3 slide = Vector3.zero;
         float sliding_force = -(horizontal * slidingFactor);
-        Debug.DrawLine(transform.position, transform.position - transform.TransformDirection(transform.right) * (5/(1+sliding_force)), Color.red);
-        slide.x = -sliding_force;
+        Debug.DrawLine(transform.position, transform.position - transform.TransformDirection(transform.right) * (1/(1+sliding_force)), Color.red);
+        slide.x = sliding_force;
 
         if (isSteer) {
             movement.z = 50;
@@ -48,7 +55,7 @@ public class WheelController : MonoBehaviour
 
         rb.AddRelativeForce(suspension);
         rb.AddRelativeForce(movement);
-        rb.AddRelativeForce(slide, ForceMode.Acceleration);
+        rb.AddRelativeForce(slide);
     }
 
     float SuspensionOffset() {
@@ -62,5 +69,26 @@ public class WheelController : MonoBehaviour
         } else {
             return 0;
         }
+    }
+}
+
+class PID {
+    public float proportional;
+    public float integral;
+    public float derivative;
+
+    float val_last = 0;
+    float stored = 0;
+    float Update(float dt, float val, float target) {
+        float error = val - target;
+        float val_rate = (val - val_last) / dt;
+        val_last = val;
+        stored += (error * dt);
+
+        float prop = proportional * error;
+        float integ = integral * stored;
+        float der = val_rate * derivative;
+
+        return prop + integ + der;
     }
 }
