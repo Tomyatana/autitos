@@ -15,20 +15,27 @@ public class WheelController : MonoBehaviour
     Vector3 prev_vel = Vector3.zero;
     [SerializeField] float maxRotationVel = 90;
     PID slidePid = new PID();
+    public float der = 0.8f;
+    public float integ = 0.8f;
+    public float prop = 0.8f;
+    
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = Mathf.Deg2Rad * maxRotationVel;
-        slidePid.derivative = 1;
-        slidePid.integral = 1;
-        slidePid.proportional = 1;
+        slidePid.derivative = der;
+        slidePid.integral = integ;
+        slidePid.proportional = prop;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        slidePid.derivative = der;
+        slidePid.integral = integ;
+        slidePid.proportional = prop;
         Vector3 rel_velocity = Quaternion.Inverse(transform.rotation) * rb.velocity;
         float forward = Vector3.Dot(rel_velocity, transform.TransformDirection(Vector3.forward));
         float horizontal = Vector3.Dot(rel_velocity, transform.TransformDirection(Vector3.right));
@@ -45,9 +52,10 @@ public class WheelController : MonoBehaviour
 
         // Sliding / Driftin' yay
         Vector3 slide = Vector3.zero;
-        float sliding_force = -(horizontal * slidingFactor);
+        float sliding_force = -slidePid.Update(Time.deltaTime, rel_velocity.x, 0);
         Debug.DrawLine(transform.position, transform.position - transform.TransformDirection(transform.right) * (1/(1+sliding_force)), Color.red);
         slide.x = sliding_force;
+        print(sliding_force);
 
         if (isSteer) {
             movement.z = 50;
@@ -79,7 +87,7 @@ class PID {
 
     float val_last = 0;
     float stored = 0;
-    float Update(float dt, float val, float target) {
+    public float Update(float dt, float val, float target) {
         float error = val - target;
         float val_rate = (val - val_last) / dt;
         val_last = val;
