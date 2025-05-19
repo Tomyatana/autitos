@@ -10,6 +10,8 @@ public class WheelController : MonoBehaviour
     public float suspensionDamping = 0.9f;
     public float slidingFactor = 1f;
     public bool isSteer = false;
+    public bool isDrive = false;
+    public float acceleration = 50f;
 
     Rigidbody rb;
     Vector3 prev_vel = Vector3.zero;
@@ -18,7 +20,6 @@ public class WheelController : MonoBehaviour
     public float der = 0.8f;
     public float integ = 0.8f;
     public float prop = 0.8f;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -53,12 +54,15 @@ public class WheelController : MonoBehaviour
         // Sliding / Driftin' yay
         Vector3 slide = Vector3.zero;
         float sliding_force = -slidePid.Update(Time.deltaTime, rel_velocity.x, 0);
-        Debug.DrawLine(transform.position, transform.position - transform.TransformDirection(transform.right) * (1/(1+sliding_force)), Color.red);
         slide.x = sliding_force;
-        print(sliding_force);
 
-        if (isSteer) {
-            movement.z = 50;
+        if (isDrive) {
+            if(Input.GetKey(KeyCode.W)) {
+                movement.z = acceleration;
+            }
+            if(Input.GetKey(KeyCode.S)) {
+                movement.z = -acceleration/2;
+            }
         }
 
         rb.AddRelativeForce(suspension);

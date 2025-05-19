@@ -441,7 +441,7 @@ Transform:
   m_GameObject: {fileID: 535279634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.8, y: 9, z: 13.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 11.17, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -533,7 +533,7 @@ Transform:
   m_GameObject: {fileID: 937216548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.778957, y: 6.7, z: 78.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 11.17, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -631,7 +631,7 @@ Transform:
   m_GameObject: {fileID: 1107839848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -57.1, y: 6.7, z: -44.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 11.17, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -755,18 +755,24 @@ PrefabInstance:
     - target: {fileID: 2203166444565386804, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: der
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2203166444565386804, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: integ
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2203166444565386804, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: prop
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2341176783133067616, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: f03a85efb3c396c47a2c2567a019bf1a,
+        type: 2}
     - target: {fileID: 2341176783133067618, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: m_Mass
@@ -860,17 +866,17 @@ PrefabInstance:
     - target: {fileID: 4053509185273854249, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: der
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4053509185273854249, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: integ
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4053509185273854249, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: prop
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4053509185273854253, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
@@ -930,17 +936,22 @@ PrefabInstance:
     - target: {fileID: 4614409812179397109, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: der
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4614409812179397109, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: integ
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4614409812179397109, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: prop
-      value: 10
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614409812179397109, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: isDrive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4724908672153151252, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
@@ -995,17 +1006,22 @@ PrefabInstance:
     - target: {fileID: 7009300430877698853, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: der
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7009300430877698853, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: integ
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7009300430877698853, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: prop
-      value: 10
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009300430877698853, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: isDrive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7440494633529853961, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
