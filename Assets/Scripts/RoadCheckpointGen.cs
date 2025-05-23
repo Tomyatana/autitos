@@ -22,7 +22,7 @@ public class RoadCheckpointGen : MonoBehaviour
                 setTriggerSize(obj, child);
                 CheckpointController checkpoint = obj.GetComponent<CheckpointController>();
                 checkpoint.checkPointManager = checkPointManager;
-                checkPointManager.Checkpoints.Add(checkpoint);
+                checkPointManager.StartLine = checkpoint;
                 Destroy(child.gameObject);
             }
             if(child.name.StartsWith(CheckpointName)) {

@@ -322,6 +322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Checkpoints: []
+  StartLine: {fileID: 0}
+  player: {fileID: 1540093939}
 --- !u!4 &499818216
 Transform:
   m_ObjectHideFlags: 0
@@ -438,6 +440,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ba6c8c1c9adf5142aa002157b15e5a8c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b754fc8d606516b6889230fcf037f4b, type: 3}
+--- !u!1 &1540093939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2341176783629290707, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2341176782067166819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2341176782067166819
 PrefabInstance:
   m_ObjectHideFlags: 0
