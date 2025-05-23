@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfa37c3ee996d6cf9d04ccdcc5af04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Checkpoints: []
 --- !u!4 &499818216
 Transform:
   m_ObjectHideFlags: 0
@@ -359,6 +360,7 @@ MonoBehaviour:
   StartLineName: Start
   StartLinePrefab: {fileID: 6592606835640612574, guid: 3027eeb39c64787f086987e61a9692a9,
     type: 3}
+  checkPointManager: {fileID: 499818215}
 --- !u!1001 &969648026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -384,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b754fc8d606516b6889230fcf037f4b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.71
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4b754fc8d606516b6889230fcf037f4b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -516,9 +518,19 @@ PrefabInstance:
       propertyPath: MaxRotation
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4805021144464306066, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: AngleOfAttack
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7197167380026076482, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: MaxRotation
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7197167380026076482, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: AngleOfAttack
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []

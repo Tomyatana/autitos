@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class CheckPointManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<CheckpointController> Checkpoints = new List<CheckpointController>();
 
-    // Update is called once per frame
-    void Update()
+    public void CheckState()
     {
-        
+        foreach(CheckpointController checkpoint in Checkpoints) {
+            if(!checkpoint.passed) return;
+        }
+        print("Gano!");
     }
 }
