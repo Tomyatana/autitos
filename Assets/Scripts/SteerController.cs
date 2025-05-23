@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SteerController : MonoBehaviour
 {
+    public float AngleOfAttack = 30;
     HingeJoint hinge;
     // Start is called before the first frame update
     void Start()
@@ -16,11 +17,11 @@ public class SteerController : MonoBehaviour
     {
         bool rotated = false;
         if(Input.GetKey(KeyCode.A)) {
-            transform.localRotation = Quaternion.AngleAxis(hinge.limits.min, hinge.axis);
+            transform.localRotation = Quaternion.AngleAxis(Mathf.Max(hinge.limits.min, -AngleOfAttack), hinge.axis);
             rotated = true;
         }
         if(Input.GetKey(KeyCode.D)) {
-            transform.localRotation = Quaternion.AngleAxis(hinge.limits.max, hinge.axis);
+            transform.localRotation = Quaternion.AngleAxis(Mathf.Min(hinge.limits.max, AngleOfAttack), hinge.axis);
             rotated = true;
         }
         if(!rotated) {

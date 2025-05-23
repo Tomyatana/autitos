@@ -6,9 +6,27 @@ ModelImporter:
     100000: //RootNode
     100002: Circle
     100004: Empty
+    100006: Checkpoint
+    100008: Checkpoint.001
+    100010: Checkpoint.002
+    100012: Checkpoint.003
+    100014: Checkpoint.004
+    100016: Checkpoint.005
+    100018: Checkpoint.006
+    100020: Checkpoint.007
+    100022: Start
     400000: //RootNode
     400002: Circle
     400004: Empty
+    400006: Checkpoint
+    400008: Checkpoint.001
+    400010: Checkpoint.002
+    400012: Checkpoint.003
+    400014: Checkpoint.004
+    400016: Checkpoint.005
+    400018: Checkpoint.006
+    400020: Checkpoint.007
+    400022: Start
     2100000: No Name
     2300000: //RootNode
     2300002: Circle
