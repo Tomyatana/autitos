@@ -5,22 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    Scene gameScene;
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameScene = SceneManager.GetSceneByBuildIndex(1);
-        print(gameScene.name);
-        SceneManager.LoadScene(gameScene.buildIndex, LoadSceneMode.Additive);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string gameScene = "Game";
 
     public void LoadGame() {
-        SceneManager.SetActiveScene(gameScene);
+        SceneManager.LoadScene(gameScene, LoadSceneMode.Single);
+    }
+
+    public void ExitGame() {
+#if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(0);
+#endif
     }
 }
