@@ -20,6 +20,12 @@ public class WheelController : MonoBehaviour
     public float der = 0.8f;
     public float integ = 0.8f;
     public float prop = 0.8f;
+
+    [Header("Driftin'")]
+    public bool DriftingWheel = false;
+    public float DriftingMult = 0.5f;
+    bool drifting = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +35,12 @@ public class WheelController : MonoBehaviour
         slidePid.derivative = der;
         slidePid.integral = integ;
         slidePid.proportional = prop;
+    }
+
+    void Update() {
+        if(Input.GetKey(KeyCode.Space)) {
+            drifting = true;
+        }
     }
 
     // Update is called once per frame
@@ -54,7 +66,7 @@ public class WheelController : MonoBehaviour
         // Sliding / Driftin' yay
         Vector3 slide = Vector3.zero;
         float sliding_force = -slidePid.Update(Time.deltaTime, rel_velocity.x, 0);
-        slide.x = sliding_force;
+        slide.x = sliding_force * ((drifting)? DriftingMult : 1);
 
         if (isDrive) {
             if(Input.GetKey(KeyCode.W)) {

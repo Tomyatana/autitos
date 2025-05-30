@@ -9,7 +9,7 @@ public class CheckpointController : MonoBehaviour
     public CheckPointManager checkPointManager;
 
     void OnTriggerEnter(Collider other) {
-        if(other.tag != "Player") return;
+        if(!other.CompareTag("Player")) return;
         passed = true;
         checkPointManager.CheckState();
     }

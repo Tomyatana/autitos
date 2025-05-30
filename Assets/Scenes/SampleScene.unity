@@ -461,6 +461,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -9.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2203166444565386804, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: prop
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203166444565386804, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: der
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203166444565386804, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: integ
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2341176783629290705, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -521,6 +536,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4053509185273854249, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: prop
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053509185273854249, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: der
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053509185273854249, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: integ
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614409812179397109, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: prop
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614409812179397109, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: der
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614409812179397109, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: integ
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4805021144464306066, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}
       propertyPath: MaxRotation
@@ -530,6 +575,21 @@ PrefabInstance:
         type: 3}
       propertyPath: AngleOfAttack
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009300430877698853, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: prop
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009300430877698853, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: der
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009300430877698853, guid: 73f73913d308bc85ba6d8d24f9f6743d,
+        type: 3}
+      propertyPath: integ
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7197167380026076482, guid: 73f73913d308bc85ba6d8d24f9f6743d,
         type: 3}

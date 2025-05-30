@@ -9,8 +9,12 @@ public class CheckPointManager : MonoBehaviour
 
     public CheckpointController StartLine;
 
+    public bool finished;
+
     [SerializeField]
     GameObject player;
+
+    float timer = 0;
 
     void Start() {
         Debug.Assert(StartLine.isStartLine);
@@ -18,15 +22,18 @@ public class CheckPointManager : MonoBehaviour
     }
 
     void Update() {
-        if(Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         }
+        if (finished) return;
+        timer += Time.deltaTime;
     }
 
     public void CheckState() {
-        foreach(CheckpointController checkpoint in Checkpoints) {
-            if(!checkpoint.passed) return;
+        foreach (CheckpointController checkpoint in Checkpoints) {
+            if (!checkpoint.passed) return;
         }
-        print("Gano!");
+        print($"Termino en {timer} segundos!");
+        finished = true;
     }
 }
