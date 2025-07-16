@@ -33,7 +33,12 @@ ModelImporter:
     3300000: //RootNode
     3300002: Circle
     4300000: Circle
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: ba6c8c1c9adf5142aa002157b15e5a8c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

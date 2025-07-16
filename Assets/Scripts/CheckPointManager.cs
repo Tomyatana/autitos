@@ -8,6 +8,7 @@ public class CheckPointManager : MonoBehaviour
 
     public CheckpointController StartLine;
 
+    public bool started;
     public bool finished;
 
     [SerializeField]
@@ -27,6 +28,11 @@ public class CheckPointManager : MonoBehaviour
 
     void Update() {
         if (finished) return;
+
+        if (!started) {
+            started = Input.anyKeyDown;
+            if (!started) return;
+        };
         timer += Time.deltaTime;
         uiManager.UpdateTimer(timer);
     }

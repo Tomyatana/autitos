@@ -8,6 +8,9 @@ public class RoadLoader : MonoBehaviour
     CheckPointManager checkPointManager;
 
     [SerializeField]
+    GameObject Floor;
+
+    [SerializeField]
     GameObject Checkpoint;
 
     [SerializeField]
@@ -16,16 +19,24 @@ public class RoadLoader : MonoBehaviour
     [SerializeField]
     int RoadLayer;
 
-    public GameObject Road;
+    [SerializeField]
+    GameObject Road;
 
-    void Start() {
-        RoadCheckpointGen checkpointGen = Road.AddComponent<RoadCheckpointGen>();
+    [SerializeField]
+    float OffsetMult = 0.9f;
+
+    void Awake() {
+        float y_offset = Floor.transform.localScale.y - Floor.transform.localScale.y / OffsetMult;
+        Vector3 pos = new Vector3(Floor.transform.position.x, Floor.transform.position.y + y_offset, Floor.transform.position.z);
+        GameObject newRoad = Instantiate(Road, pos, Quaternion.identity);
+        GameObject roadModel = newRoad.transform.GetChild(0).gameObject;
+        RoadCheckpointGen checkpointGen = roadModel.AddComponent<RoadCheckpointGen>();
         checkpointGen.checkPointManager = checkPointManager;
         checkpointGen.CheckpointPrefab = Checkpoint;
         checkpointGen.StartLinePrefab = StartLine;
         checkpointGen.Generate();
 
-        foreach(Transform child in Road.transform) {
+        foreach(Transform child in roadModel.transform) {
             if(child.GetComponent<MeshRenderer>() == null) {
                 continue;
             }
