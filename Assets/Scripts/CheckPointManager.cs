@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CheckPointManager : MonoBehaviour
 {
@@ -14,19 +13,22 @@ public class CheckPointManager : MonoBehaviour
     [SerializeField]
     GameObject player;
 
+    [SerializeField]
+    UIManager uiManager;
+
     float timer = 0;
 
     void Start() {
         Debug.Assert(StartLine.isStartLine);
         player.transform.position = StartLine.transform.position;
+        Quaternion rotation = StartLine.transform.rotation;
+        player.transform.rotation.Set(rotation.x, rotation.y, 0, rotation.w);
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
-        }
         if (finished) return;
         timer += Time.deltaTime;
+        uiManager.UpdateTimer(timer);
     }
 
     public void CheckState() {
@@ -35,5 +37,9 @@ public class CheckPointManager : MonoBehaviour
         }
         print($"Termino en {timer} segundos!");
         finished = true;
+    }
+
+    public float GetTime() {
+        return timer;
     }
 }

@@ -4,35 +4,39 @@ using UnityEngine;
 
 public class RoadCheckpointGen : MonoBehaviour
 {
-    [SerializeField]
-    string CheckpointName = "Checkpoint";
-    [SerializeField]
-    GameObject CheckpointPrefab;
-    [SerializeField]
-    string StartLineName = "Start";
-    [SerializeField]
-    GameObject StartLinePrefab;
-    [SerializeField]
-    CheckPointManager checkPointManager;
+    public string CheckpointName = "Checkpoint";
+    public GameObject CheckpointPrefab;
+    public string StartLineName = "Start";
+    public GameObject StartLinePrefab;
+    public CheckPointManager checkPointManager;
 
-    void Awake() {
+    public void Generate() {
+        List<Transform> children = new List<Transform>();
         foreach (Transform child in transform) {
-            if(child.name == StartLineName) {
-                GameObject obj = Instantiate(StartLinePrefab, child.position, child.rotation);
-                setTriggerSize(obj, child);
-                CheckpointController checkpoint = obj.GetComponent<CheckpointController>();
-                checkpoint.checkPointManager = checkPointManager;
-                checkPointManager.StartLine = checkpoint;
-                Destroy(child.gameObject);
-            }
+            GameObject obj = null;
+            CheckpointController checkpoint = null;
             if(child.name.StartsWith(CheckpointName)) {
-                GameObject obj = Instantiate(CheckpointPrefab, child.position, child.rotation);
-                setTriggerSize(obj, child);
-                CheckpointController checkpoint = obj.GetComponent<CheckpointController>();
-                checkpoint.checkPointManager = checkPointManager;
-                checkPointManager.Checkpoints.Add(checkpoint);
-                Destroy(child.gameObject);
+                obj = Instantiate(CheckpointPrefab, child.position, child.rotation);
             }
+            if(child.name == StartLineName) {
+                obj = Instantiate(StartLinePrefab, child.position, child.rotation);
+            }
+            if(obj == null) continue;
+            setTriggerSize(obj, child);
+            checkpoint = obj.GetComponent<CheckpointController>();
+            checkpoint.checkPointManager = checkPointManager;
+            Destroy(child.gameObject);
+            children.Add(obj.transform);
+            if(child.name.StartsWith(CheckpointName)) {
+                checkPointManager.Checkpoints.Add(checkpoint);
+            }
+            if(child.name == StartLineName) {
+                checkPointManager.StartLine = checkpoint;
+            }
+        }
+
+        foreach(Transform child in children) {
+            child.SetParent(transform);
         }
     }
 
